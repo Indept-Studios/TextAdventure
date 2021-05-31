@@ -1,0 +1,16 @@
+D:\Code\Rumtesten\Rumtesten\bin\Debug\net5.0\Rumtesten.exe
+D:\Code\Rumtesten\Rumtesten\bin\Debug\net5.0\Rumtesten.deps.json
+D:\Code\Rumtesten\Rumtesten\bin\Debug\net5.0\Rumtesten.runtimeconfig.json
+D:\Code\Rumtesten\Rumtesten\bin\Debug\net5.0\Rumtesten.runtimeconfig.dev.json
+D:\Code\Rumtesten\Rumtesten\bin\Debug\net5.0\Rumtesten.dll
+D:\Code\Rumtesten\Rumtesten\bin\Debug\net5.0\ref\Rumtesten.dll
+D:\Code\Rumtesten\Rumtesten\bin\Debug\net5.0\Rumtesten.pdb
+D:\Code\Rumtesten\Rumtesten\obj\Debug\net5.0\Rumtesten.csprojAssemblyReference.cache
+D:\Code\Rumtesten\Rumtesten\obj\Debug\net5.0\Rumtesten.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\Rumtesten\Rumtesten\obj\Debug\net5.0\Rumtesten.AssemblyInfoInputs.cache
+D:\Code\Rumtesten\Rumtesten\obj\Debug\net5.0\Rumtesten.AssemblyInfo.cs
+D:\Code\Rumtesten\Rumtesten\obj\Debug\net5.0\Rumtesten.csproj.CoreCompileInputs.cache
+D:\Code\Rumtesten\Rumtesten\obj\Debug\net5.0\Rumtesten.dll
+D:\Code\Rumtesten\Rumtesten\obj\Debug\net5.0\ref\Rumtesten.dll
+D:\Code\Rumtesten\Rumtesten\obj\Debug\net5.0\Rumtesten.pdb
+D:\Code\Rumtesten\Rumtesten\obj\Debug\net5.0\Rumtesten.genruntimeconfig.cache

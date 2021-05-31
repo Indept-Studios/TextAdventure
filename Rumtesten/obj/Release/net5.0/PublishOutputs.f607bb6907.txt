@@ -1,0 +1,5 @@
+D:\Code\Rumtesten\Rumtesten\bin\publish\Rumtesten.exe
+D:\Code\Rumtesten\Rumtesten\bin\publish\Rumtesten.dll
+D:\Code\Rumtesten\Rumtesten\bin\publish\Rumtesten.deps.json
+D:\Code\Rumtesten\Rumtesten\bin\publish\Rumtesten.runtimeconfig.json
+D:\Code\Rumtesten\Rumtesten\bin\publish\Rumtesten.pdb
