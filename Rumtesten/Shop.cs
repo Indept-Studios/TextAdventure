@@ -1,100 +1,106 @@
-﻿using static System.Console;
+using System;
 
 namespace TextAdventure
 {
     public class Shop
     {
-        public static void RunShop(Creature p)
+        private static int armorPower;
+        private static int diffficultyValue;
+        private static int potionPower;
+        private static int weaponPower;
+
+        public static void RunShop(Creature player)
         {
-            int armorP;
-            int diffP;
-            int potionP;
-            int weaponP;
+            armorPower = 100 * (player.armorValue + 1); ;
+            diffficultyValue = 25 + (10 * player.difficulty);
+            potionPower = 25 + (10 * player.difficulty);
+            weaponPower = 100 * (player.weaponValue + 1);
+
+            ShopGUI(player);
 
             while (true)
             {
-                armorP = 100 * (p.armorValue+1);
-                diffP = 25 + 10 * p.difficulty;
-                potionP = 25 + 10 * p.difficulty;
-                weaponP = 100 * (p.weaponValue + 1);
-
-                Clear();
-                WriteLine("====     Shop    ====");
-                WriteLine("=====================");
-                WriteLine("| (A)rmor: $        |" + armorP);
-                WriteLine("| (D)ifficulty Mod  |" + diffP);
-                WriteLine("| (P)otion: $       |" + potionP);
-                WriteLine("| (W)eapon: $       |" + weaponP);
-                WriteLine("=====================");
-                WriteLine("| (E)xit            |");
-                WriteLine("| (Q)uit Game       |");
-                WriteLine();
-                WriteLine();
-                WriteLine("==== PlayerStats ====");
-                WriteLine("=====================");
-                WriteLine("| Armor:         | " + p.armorValue);
-                WriteLine("| Difficulty Mod | " + p.difficulty);
-                WriteLine("| Potion:        | " + p.potion);
-                WriteLine("| Weapon:        | " + p.weaponValue);
-                WriteLine("| Coins:         | " + p.coins);
-                WriteLine("=====================");
-                WriteLine("What do u want to buy?");
-                string input = ReadLine().ToLower();
-
-                if (input == "a" || input == "armor")
+                var input = Console.ReadKey();
+                switch (input.Key)
                 {
-                    TryBuy("armor", armorP, p);
-                }
-                else if (input == "d" || input == "difficulty")
-                {
-                    TryBuy("difficulty", diffP, p);
-                }
-                else if (input == "p" || input == "potion")
-                {
-                    TryBuy("potion", potionP, p);
-                }
-                else if (input == "w" || input == "weapon")
-                {
-                    TryBuy("weapon", weaponP, p);
-                }
-                else if(input == "e" || input == "exit")
-                {
-                    break;
-                }
-                else if (input == "q" || input == "quit")
-                {
-                    Program.Quit();
+                    case ConsoleKey.A:
+                        TryBuy("armor", armorPower, player);
+                        break;
+                    case ConsoleKey.D:
+                        TryBuy("difficulty", diffficultyValue, player);
+                        break;
+                    case ConsoleKey.P:
+                        TryBuy("potion", potionPower, player);
+                        break;
+                    case ConsoleKey.W:
+                        TryBuy("weapon", weaponPower, player);
+                        break;
+                    case ConsoleKey.E:
+                        break;
+                    case ConsoleKey.Q:
+                        Program.Quit();
+                        break;
+                    default:
+                        break;
                 }
             }
+
         }
 
-        private static void TryBuy(string item, int cost, Creature p)
+        private static void TryBuy(string item, int cost, Creature player)
         {
-            if (p.coins >= cost)
+            if (player.coins >= cost)
             {
-                if (item == "armor")
+                switch (item)
                 {
-                    p.armorValue++;
+                    case "armor":
+                        player.armorValue++;
+                        break;
+                    case "difficulty":
+                        player.difficulty++;
+                        break;
+                    case "potion":
+                        player.potion++;
+                        break;
+                    case "weapon":
+                        player.weaponValue++;
+                        break;
+                    default:
+                        break;
                 }
-                else if (item == "difficulty")
-                {
-                    p.difficulty++;
-                }
-                else if (item == "potion")
-                {
-                    p.potion++;
-                }
-                else if (item == "weapon")
-                {
-                    p.weaponValue++;
-                }
-                p.coins -= cost;
+                player.coins -= cost;
             }
             else
             {
-                WriteLine("You don´t have enough coins! come back later");
-                ReadKey();
+                Console.WriteLine("You don´t have enough coins! come back later");
+                Console.WriteLine("Press any Key...");
+                Console.ReadKey();
             }
+        }
+
+        private static void ShopGUI(Creature player)
+        {
+            Console.Clear();
+            Console.WriteLine("====     Shop    ====");
+            Console.WriteLine("=====================");
+            Console.WriteLine("| (A)rmor: $        |" + armorPower);
+            Console.WriteLine("| (D)ifficulty Mod  |" + diffficultyValue);
+            Console.WriteLine("| (P)otion: $       |" + potionPower);
+            Console.WriteLine("| (W)eapon: $       |" + weaponPower);
+            Console.WriteLine("=====================");
+            Console.WriteLine("| (E)xit            |");
+            Console.WriteLine("| (Q)uit Game       |");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("==== PlayerStats ====");
+            Console.WriteLine("=====================");
+            Console.WriteLine("| Armor:         | " + player.armorValue);
+            Console.WriteLine("| Difficulty Mod | " + player.difficulty);
+            Console.WriteLine("| Potion:        | " + player.potion);
+            Console.WriteLine("| Weapon:        | " + player.weaponValue);
+            Console.WriteLine("| Coins:         | " + player.coins);
+            Console.WriteLine("=====================");
+            Console.WriteLine("What do u want to buy?");
         }
     }
 }
