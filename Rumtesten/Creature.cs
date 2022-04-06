@@ -3,50 +3,22 @@
 namespace TextAdventure
 {
     [Serializable]
-    public class Creature
+    abstract class Creature
     {
-        public string name;
-        public int id;
-        public int coins = 0;
-        public int health = 10;
-        public int damage = 1;
-        public int armorValue = 0;
-        public int potion = 5;
-        public int weaponValue = 1;
-        public int difficulty = 0;
+        public abstract int X { get; set; }
+        public abstract int Y { get; set; }
+        public abstract string Name { get; set; }
+        public abstract int  ID { get; set; }
+        public abstract string Marker { get; set; }
+        public abstract int Coins { get; set; }
+        public abstract int Health { get; set; }
+        public abstract int Damage { get; set; }
+        public abstract int ArmorValue { get; set; }
+        public abstract int WeaponValue { get; set; }
+        public abstract int Level { get; set; }
+        public abstract int XP { get; set; }
+        public abstract int Potions { get; set; }
+        public abstract int Difficulty { get; set; }
 
-
-        /// <summary>
-        /// Get a random health value, depending on the difficulty
-        /// </summary>
-        /// <returns></returns>
-        public int GetHealth()
-        {
-            int upper = (2 * difficulty + 5);
-            int lower = (difficulty + 2);
-            return Program.rnd.Next(lower, upper);
-        }
-
-        /// <summary>
-        /// Get a random power value, depending on the difficulty
-        /// </summary>
-        /// <returns></returns>
-        public int GetPower()
-        {
-            int upper = (2 * difficulty + 2);
-            int lower = (difficulty + 2);
-            return Program.rnd.Next(lower, upper);
-        }
-
-        /// <summary>
-        /// Get a random coin value, depending on the difficulty
-        /// </summary>
-        /// <returns></returns>
-        public int GetCoins()
-        {
-            int upper = (15 * difficulty + 50);
-            int lower = (10 * difficulty + 10);
-            return Program.rnd.Next(lower, upper);
-        }
     }
 }

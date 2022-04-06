@@ -1,0 +1,17 @@
+﻿Umrandung mit #											done
+Stadt einpflegen										done
+Properties (player,map, Koordinaten)					done
+Klassen Refactoring (Creature, Player)					done
+shop in Stadt einpflegen
+städte einpflegen
+Monster hinzufügen
+Kämpfe hinzufügen
+Inventar hinzufügen
+Loot zu Monstern hinzufügen
+
+Abbruchbedingung
+
+Levelsystem
+Kampfbalancing
+Prüfen ob Stadt walkable ist
+Name für alle auf der Map begfindlichen Items finden

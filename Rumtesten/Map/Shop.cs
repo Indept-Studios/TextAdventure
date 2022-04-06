@@ -9,66 +9,67 @@ namespace TextAdventure
         private static int potionPower;
         private static int weaponPower;
 
-        public static void RunShop(Creature player)
+        public static void RunShop()
         {
-            armorPower = 100 * (player.armorValue + 1); ;
-            diffficultyValue = 25 + (10 * player.difficulty);
-            potionPower = 25 + (10 * player.difficulty);
-            weaponPower = 100 * (player.weaponValue + 1);
+            armorPower = 100 * (Game.CurrentPlayer.ArmorValue + 1); ;
+            diffficultyValue = 25 + (10 * Game.CurrentPlayer.Difficulty);
+            potionPower = 25 + (10 * Game.CurrentPlayer.Difficulty);
+            weaponPower = 100 * (Game.CurrentPlayer.WeaponValue + 1);
+            bool shopIsRunning = true;
 
-            ShopGUI(player);
 
-            while (true)
+            while (shopIsRunning)
             {
+                ShopGUI(Game.CurrentPlayer);
                 var input = Console.ReadKey();
                 switch (input.Key)
                 {
                     case ConsoleKey.A:
-                        TryBuy("armor", armorPower, player);
+                        TryBuy("armor", armorPower, Game.CurrentPlayer);
                         break;
                     case ConsoleKey.D:
-                        TryBuy("difficulty", diffficultyValue, player);
+                        TryBuy("difficulty", diffficultyValue, Game.CurrentPlayer);
                         break;
                     case ConsoleKey.P:
-                        TryBuy("potion", potionPower, player);
+                        TryBuy("potion", potionPower, Game.CurrentPlayer);
                         break;
                     case ConsoleKey.W:
-                        TryBuy("weapon", weaponPower, player);
+                        TryBuy("weapon", weaponPower, Game.CurrentPlayer);
                         break;
                     case ConsoleKey.E:
+                        shopIsRunning = false;
                         break;
                     case ConsoleKey.Q:
-                        Program.Quit();
+                        Game.Quit();
                         break;
                     default:
                         break;
                 }
             }
-
         }
 
-        private static void TryBuy(string item, int cost, Creature player)
+        private static void TryBuy(string item, int cost, Player player)
         {
-            if (player.coins >= cost)
+            if (player.Coins >= cost)
             {
                 switch (item)
                 {
                     case "armor":
-                        player.armorValue++;
+                        player.ArmorValue++;
                         break;
                     case "difficulty":
-                        player.difficulty++;
+                        player.Difficulty++;
                         break;
                     case "potion":
-                        player.potion++;
+                        player.Potions++;
                         break;
                     case "weapon":
-                        player.weaponValue++;
+                        player.WeaponValue++;
                         break;
                     default:
                         break;
                 }
-                player.coins -= cost;
+                player.Coins -= cost;
             }
             else
             {
@@ -78,7 +79,7 @@ namespace TextAdventure
             }
         }
 
-        private static void ShopGUI(Creature player)
+        private static void ShopGUI(Player player)
         {
             Console.Clear();
             Console.WriteLine("====     Shop    ====");
@@ -90,15 +91,16 @@ namespace TextAdventure
             Console.WriteLine("=====================");
             Console.WriteLine("| (E)xit            |");
             Console.WriteLine("| (Q)uit Game       |");
+            Console.WriteLine("=====================");
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("==== PlayerStats ====");
             Console.WriteLine("=====================");
-            Console.WriteLine("| Armor:         | " + player.armorValue);
-            Console.WriteLine("| Difficulty Mod | " + player.difficulty);
-            Console.WriteLine("| Potion:        | " + player.potion);
-            Console.WriteLine("| Weapon:        | " + player.weaponValue);
-            Console.WriteLine("| Coins:         | " + player.coins);
+            Console.WriteLine("| Armor:         | " + player.ArmorValue);
+            Console.WriteLine("| Difficulty Mod | " + player.Difficulty);
+            Console.WriteLine("| Potion:        | " + player.Potions);
+            Console.WriteLine("| Weapon:        | " + player.WeaponValue);
+            Console.WriteLine("| Coins:         | " + player.Coins);
             Console.WriteLine("=====================");
             Console.WriteLine("What do u want to buy?");
         }

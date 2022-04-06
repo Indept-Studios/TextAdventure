@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Code\\Rumtesten\\Rumtesten\\TextAdventure.csproj": {}
+    "D:\\Code\\Shool\\Rumtesten\\TextAdventure.csproj": {}
   },
   "projects": {
-    "D:\\Code\\Rumtesten\\Rumtesten\\TextAdventure.csproj": {
+    "D:\\Code\\Shool\\Rumtesten\\TextAdventure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Code\\Rumtesten\\Rumtesten\\TextAdventure.csproj",
+        "projectUniqueName": "D:\\Code\\Shool\\Rumtesten\\TextAdventure.csproj",
         "projectName": "TextAdventure",
-        "projectPath": "D:\\Code\\Rumtesten\\Rumtesten\\TextAdventure.csproj",
+        "projectPath": "D:\\Code\\Shool\\Rumtesten\\TextAdventure.csproj",
         "packagesPath": "C:\\Users\\HomeDesk\\.nuget\\packages\\",
-        "outputPath": "D:\\Code\\Rumtesten\\Rumtesten\\obj\\",
+        "outputPath": "D:\\Code\\Shool\\Rumtesten\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\HomeDesk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -54,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

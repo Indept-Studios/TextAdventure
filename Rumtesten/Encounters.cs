@@ -11,38 +11,36 @@ namespace TextAdventure
         /// </summary>
         public static void FirstEncounter()
         {
-            WriteLine("Behind the door is a room with a table and 2 chairs.");
+            WriteLine("Behind the door is a room with a table and two chairs.");
             WriteLine("A candle burns on the table and a human villain sits there and eats.");
             WriteLine("You grab a wooden stick leaning against the door and start fighting");
-            Combat(false, "test", 1, 4);
+            Combat(false, new Monster() { Name = "Human Villain", WeaponValue = 1, Health = 4 });
         }
-                
+
         private static void BasicFightEncounter()
         {
             WriteLine("Basic Fight Story");
-            Combat(true, "", 0, 0);
+            Combat(true, new Monster());
         }
-                
+
         private static void WizardEncounter()
         {
             WriteLine("Wizard Fight Story");
-            Combat(false, "Wizzard", 3, 5);
+            Combat(false, new Monster() { Name = "Wizzard", WeaponValue = 3, Health = 5 });
         }
-               
+
         private static void BossEncounter()
         {
             WriteLine("Boss Fight Story");
-            Combat(false, "Chris", 5, 25);
+            Combat(false, new Monster() { Name = "Chris", WeaponValue = 5, Health = 25 });
         }
-
-        // Tools
 
         /// <summary>
         /// Include BasicEncounter, WizardEncounter, BossEncounter
         /// </summary>
         public static void RandomEncounter()
         {
-            switch (Program.rnd.Next(0, 3))
+            switch (Game.rnd.Next(0, 3))
             {
                 case 0:
                     BasicFightEncounter();
@@ -58,83 +56,80 @@ namespace TextAdventure
         }
 
         /// <summary>
-        /// Start a combat, random means random or fixed opponent
+        /// Combat
         /// </summary>
-        /// <param name="random"></param>
-        /// <param name="name"></param>
-        /// <param name="power"></param>
-        /// <param name="health"></param>
-        private static void Combat(bool random, string name, int power, int health)
+        /// <param name="random">True for random Monster, false for fixed Monster</param>
+        /// <param name="monster"></param>
+        private static void Combat(bool random, Monster monster)
         {
-            string n = "";
-            int p = 0;
-            int h = 0;
-
+            string name = "";
+            int power = 0;
+            int health = 0;
 
             if (random)
             {
-                n = GetName();
-                p = Program.currentPlayer.GetPower();
-                h = Program.currentPlayer.GetHealth();
+                name = GetName();
+                power = monster.SetDamageValue();
+                health = monster.SetHealthValue();
             }
             else
             {
-                n = name;
-                p = power;
-                h = health;
+                name = monster.Name;
+                power = monster.WeaponValue;
+                health = monster.Health;
             }
 
-            while (h > 0)
+            while (health > 0)
             {
                 ReadKey();
                 Clear();
-                WriteLine(n);
-                WriteLine(p + "/" + h);
+                WriteLine(name);
+                WriteLine(power + "/" + health);
                 WriteLine("====================");
                 WriteLine("|(A)ttack (D)efend |");
                 WriteLine("|(R)un    (H)eal   |");
                 WriteLine("|(S)hop   (Q)uit   |");
                 WriteLine("====================");
-                WriteLine("Potions: " + Program.currentPlayer.potion + "    Health: " + Program.currentPlayer.health);
+                WriteLine("Potions: " + Game.CurrentPlayer.Potions + "    Health: " + Game.CurrentPlayer.Health);
                 string input = ReadLine();
 
                 //attack
                 if (input.ToLower() == "a" || input.ToLower() == "attack")
                 {
-                    WriteLine("You attack " + n + " with a good punch");
-                    int damage = p - Program.currentPlayer.armorValue;
+                    WriteLine("You attack " + name + " with a good punch");
+                    int damage = power - Game.CurrentPlayer.ArmorValue;
                     if (damage < 0)
                         damage = 0;
-                    int attack = Program.rnd.Next(0, Program.currentPlayer.weaponValue) + Program.rnd.Next(1, 4);
+                    int attack = Game.rnd.Next(0, Game.CurrentPlayer.WeaponValue) + Game.rnd.Next(1, 4);
                     WriteLine("You lose " + damage + " health and deal " + attack + " damage");
-                    Program.currentPlayer.health -= damage;
-                    h -= attack;
+                    Game.CurrentPlayer.Health -= damage;
+                    health -= attack;
                 }
 
                 //defend
                 else if (input.ToLower() == "d" || input.ToLower() == "defend")
                 {
-                    WriteLine("You defend yourself against " + n + " and parry his attack");
-                    int damage = (p / 4) - Program.currentPlayer.armorValue;
+                    WriteLine("You defend yourself against " + name + " and parry his attack");
+                    int damage = (power / 4) - Game.CurrentPlayer.ArmorValue;
                     if (damage < 0)
                         damage = 0;
-                    int attack = Program.rnd.Next(0, Program.currentPlayer.weaponValue) / 2;
+                    int attack = Game.rnd.Next(0, Game.CurrentPlayer.WeaponValue) / 2;
                     WriteLine("You lose " + damage + " health and deal " + attack + " damage");
-                    Program.currentPlayer.health -= damage;
-                    h -= attack;
+                    Game.CurrentPlayer.Health -= damage;
+                    health -= attack;
                 }
 
                 //run
                 else if (input.ToLower() == "r" || input.ToLower() == "run")
                 {
-                    if (Program.rnd.Next(0, 2) == 0)
+                    if (Game.rnd.Next(0, 2) == 0)
                     {
                         WriteLine("You try to run away but you can't shake off the attacker");
-                        int damage = p - Program.currentPlayer.armorValue;
+                        int damage = power - Game.CurrentPlayer.ArmorValue;
                         if (damage < 0)
                             damage = 0;
                         WriteLine("You lose " + damage + " health, unable to escape");
-                        Program.currentPlayer.health -= damage;
+                        Game.CurrentPlayer.Health -= damage;
                     }
                     else
                     {
@@ -146,27 +141,27 @@ namespace TextAdventure
                 //heal
                 else if (input.ToLower() == "h" || input.ToLower() == "heal")
                 {
-                    if (Program.currentPlayer.potion == 0)
+                    if (Game.CurrentPlayer.Potions == 0)
                     {
                         WriteLine("Heal failed because u have no potions left!");
-                        int damage = p - Program.currentPlayer.armorValue;
+                        int damage = power - Game.CurrentPlayer.ArmorValue;
                         if (damage < 0)
                             damage = 0;
-                        WriteLine(damage + " dmg from " + n);
-                        Program.currentPlayer.health -= damage;
+                        WriteLine(damage + " dmg from " + name);
+                        Game.CurrentPlayer.Health -= damage;
                     }
                     else
                     {
                         WriteLine("Heal success");
                         int potionV = 5;
                         WriteLine("You gain " + potionV + " health");
-                        Program.currentPlayer.health += potionV;
-                        Program.currentPlayer.potion--;
-                        int damage = (p / 4) - Program.currentPlayer.armorValue;
+                        Game.CurrentPlayer.Health += potionV;
+                        Game.CurrentPlayer.Potions--;
+                        int damage = (power / 4) - Game.CurrentPlayer.ArmorValue;
                         if (damage < 0)
                             damage = 0;
-                        WriteLine(damage + " dmg from " + n);
-                        Program.currentPlayer.health -= damage;
+                        WriteLine(damage + " dmg from " + name);
+                        Game.CurrentPlayer.Health -= damage;
                     }
                 }
 
@@ -174,43 +169,43 @@ namespace TextAdventure
                 else if (input.ToLower() == "s" || input.ToLower() == "shop")
                 {
 
-                    if (Program.rnd.Next(0, 2) == 0)
+                    if (Game.rnd.Next(0, 2) == 0)
                     {
                         WriteLine("You try to escape to a nearby shop, but do not escape your pursuer");
-                        int damage = p - Program.currentPlayer.armorValue;
+                        int damage = power - Game.CurrentPlayer.ArmorValue;
                         if (damage < 0)
                             damage = 0;
                         WriteLine("You lose " + damage + " health, unable to escape");
-                        Program.currentPlayer.health -= damage;
+                        Game.CurrentPlayer.Health -= damage;
                     }
                     else
                     {
                         WriteLine("You do a few hooks and get away from your pursuer");
-                        Shop.RunShop(Program.currentPlayer);
+                        Shop.RunShop();
                     }
                 }
 
                 //quit
                 else if (input.ToLower() == "q" || input.ToLower() == "quit")
                 {
-                    Program.Quit();
+                    Game.Quit();
                 }
-                    
+
 
                 //check for loot
-                if (Program.currentPlayer.health > 0 && h <= 0)
+                if (Game.CurrentPlayer.Health > 0 && health <= 0)
                 {
-                    int c = Program.currentPlayer.GetCoins();
-                    WriteLine("You have defeated " + n + "! Glory will be yours forever. You will also find " + c + " coins ");
-                    Program.currentPlayer.coins += c;
+                    int c = monster.SetCoinsValue();
+                    WriteLine("You have defeated " + name + "! Glory will be yours forever. You will also find " + c + " coins ");
+                    Game.CurrentPlayer.Coins += c;
                 }
 
 
                 //check for player death
-                else if (Program.currentPlayer.health <= 0)
+                else if (Game.CurrentPlayer.Health <= 0)
                 {
                     WriteLine("You died. It seems that your opponent was too strong for you. Maybe someday a hero will come to defeat them all");
-                    Program.DeletePlayer();
+                    Game.DeletePlayer();
                     Environment.Exit(0);
                 }
             }
@@ -219,7 +214,7 @@ namespace TextAdventure
 
         private static string GetName()
         {
-            switch (Program.rnd.Next(0, 4))
+            switch (Game.rnd.Next(0, 4))
             {
                 case 0:
                     return "Skeleton";

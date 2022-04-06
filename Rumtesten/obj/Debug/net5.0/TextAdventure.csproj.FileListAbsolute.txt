@@ -1,0 +1,16 @@
+D:\Code\Shool\Rumtesten\bin\Debug\net5.0\TextAdventure.exe
+D:\Code\Shool\Rumtesten\bin\Debug\net5.0\TextAdventure.deps.json
+D:\Code\Shool\Rumtesten\bin\Debug\net5.0\TextAdventure.runtimeconfig.json
+D:\Code\Shool\Rumtesten\bin\Debug\net5.0\TextAdventure.runtimeconfig.dev.json
+D:\Code\Shool\Rumtesten\bin\Debug\net5.0\TextAdventure.dll
+D:\Code\Shool\Rumtesten\bin\Debug\net5.0\ref\TextAdventure.dll
+D:\Code\Shool\Rumtesten\bin\Debug\net5.0\TextAdventure.pdb
+D:\Code\Shool\Rumtesten\obj\Debug\net5.0\TextAdventure.csproj.AssemblyReference.cache
+D:\Code\Shool\Rumtesten\obj\Debug\net5.0\TextAdventure.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\Shool\Rumtesten\obj\Debug\net5.0\TextAdventure.AssemblyInfoInputs.cache
+D:\Code\Shool\Rumtesten\obj\Debug\net5.0\TextAdventure.AssemblyInfo.cs
+D:\Code\Shool\Rumtesten\obj\Debug\net5.0\TextAdventure.csproj.CoreCompileInputs.cache
+D:\Code\Shool\Rumtesten\obj\Debug\net5.0\TextAdventure.dll
+D:\Code\Shool\Rumtesten\obj\Debug\net5.0\ref\TextAdventure.dll
+D:\Code\Shool\Rumtesten\obj\Debug\net5.0\TextAdventure.pdb
+D:\Code\Shool\Rumtesten\obj\Debug\net5.0\TextAdventure.genruntimeconfig.cache
