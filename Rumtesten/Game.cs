@@ -16,8 +16,8 @@ namespace TextAdventure
 
         public Game()
         {
-            Initilalisation();
-           
+            Intro();
+
             CurrentPlayer = Load(out bool newP);
             if (newP)
                 Encounters.FirstEncounter();
@@ -28,6 +28,19 @@ namespace TextAdventure
                 map.DrawMap(CurrentPlayer);
                 CurrentPlayer.Move(map);
             } while (true);
+        }
+
+        private void Intro()
+        {
+            Console.WriteLine("=============== BRAWL DUNGEON! ===============");
+            Console.WriteLine();
+            Console.WriteLine("=========== INITIALISATION STARTED ===========");
+            Function.TypeLine("............", 200);
+            Function.TypeLine("............");
+            Initilalisation();
+            Console.WriteLine("============= INITIALISATION DONE ============");
+            Console.WriteLine("please press any key...");
+            Console.ReadKey();
         }
 
         private void Initilalisation()
@@ -49,7 +62,7 @@ namespace TextAdventure
         {
             Console.Clear();
             Player player = new Player();
-            Console.WriteLine("Brawl Dungeon!");
+            
             Console.WriteLine("Please enter your name");
             player.Name = Console.ReadLine();
             player.ID = id;
@@ -160,7 +173,6 @@ namespace TextAdventure
                         Console.ReadKey();
                     }
                 }
-
                 catch (IndexOutOfRangeException)
                 {
 

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sXbm8sARgCoTwnUwxaBgJBnkCUah8POVk5HOTc6mlXHAxKBFclQ+vYpSDJk7NmnQ4VZmtr61JVEC1eDNLquYxA==",
+  "dgSpecHash": "qhoKmSN7dSFMK5Kyz4YdovSZEHZPuCu7MnzBSGCxUqeC4kXGhbr/wYfQaWqGLy6diPv97oryNquXHT8fLjzYiQ==",
   "success": true,
-  "projectFilePath": "D:\\Code\\Shool\\Rumtesten\\TextAdventure.csproj",
+  "projectFilePath": "D:\\Code\\TextAdventure\\Rumtesten\\TextAdventure.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

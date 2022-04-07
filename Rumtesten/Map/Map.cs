@@ -16,9 +16,8 @@ namespace TextAdventure
 
         public Map(int height, int width)
         {
-            town = new Town(Game.rnd.Next(1, height), Game.rnd.Next(1, width));
-
             MapCreation();
+            town = new Town(Game.rnd.Next(1, height), Game.rnd.Next(1, width));
         }
 
 

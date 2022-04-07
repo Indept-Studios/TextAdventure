@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Code\\Shool\\Rumtesten\\TextAdventure.csproj": {}
+    "D:\\Code\\TextAdventure\\Rumtesten\\TextAdventure.csproj": {}
   },
   "projects": {
-    "D:\\Code\\Shool\\Rumtesten\\TextAdventure.csproj": {
+    "D:\\Code\\TextAdventure\\Rumtesten\\TextAdventure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Code\\Shool\\Rumtesten\\TextAdventure.csproj",
+        "projectUniqueName": "D:\\Code\\TextAdventure\\Rumtesten\\TextAdventure.csproj",
         "projectName": "TextAdventure",
-        "projectPath": "D:\\Code\\Shool\\Rumtesten\\TextAdventure.csproj",
+        "projectPath": "D:\\Code\\TextAdventure\\Rumtesten\\TextAdventure.csproj",
         "packagesPath": "C:\\Users\\HomeDesk\\.nuget\\packages\\",
-        "outputPath": "D:\\Code\\Shool\\Rumtesten\\obj\\",
+        "outputPath": "D:\\Code\\TextAdventure\\Rumtesten\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

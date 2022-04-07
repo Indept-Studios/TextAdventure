@@ -62,141 +62,132 @@ namespace TextAdventure
         /// <param name="monster"></param>
         private static void Combat(bool random, Monster monster)
         {
-            string name = "";
-            int power = 0;
-            int health = 0;
+            string monsterName = "";
+            int monsterPower = 0;
+            int monsterHealth = 0;
+            int monsterDamage;
+            int monaterAttack;
+            int potionValue;
 
             if (random)
             {
-                name = GetName();
-                power = monster.SetDamageValue();
-                health = monster.SetHealthValue();
+                monsterPower = monster.SetDamageValue();
+                monsterHealth = monster.SetHealthValue();
             }
             else
             {
-                name = monster.Name;
-                power = monster.WeaponValue;
-                health = monster.Health;
+                monsterName = monster.Name;
+                monsterPower = monster.WeaponValue;
+                monsterHealth = monster.Health;
             }
 
-            while (health > 0)
+            while (monsterHealth > 0)
             {
+                Console.WriteLine("Please press any key to continue");
                 ReadKey();
                 Clear();
-                WriteLine(name);
-                WriteLine(power + "/" + health);
+                WriteLine(monsterName);
+                WriteLine($"Power: {monsterPower} / Health: {monsterHealth}");
                 WriteLine("====================");
                 WriteLine("|(A)ttack (D)efend |");
                 WriteLine("|(R)un    (H)eal   |");
                 WriteLine("|(S)hop   (Q)uit   |");
                 WriteLine("====================");
-                WriteLine("Potions: " + Game.CurrentPlayer.Potions + "    Health: " + Game.CurrentPlayer.Health);
+                WriteLine($"Potions: {Game.CurrentPlayer.Potions} Health: {Game.CurrentPlayer.Health}");
                 string input = ReadLine();
 
-                //attack
-                if (input.ToLower() == "a" || input.ToLower() == "attack")
+                switch (input.ToLower())
                 {
-                    WriteLine("You attack " + name + " with a good punch");
-                    int damage = power - Game.CurrentPlayer.ArmorValue;
-                    if (damage < 0)
-                        damage = 0;
-                    int attack = Game.rnd.Next(0, Game.CurrentPlayer.WeaponValue) + Game.rnd.Next(1, 4);
-                    WriteLine("You lose " + damage + " health and deal " + attack + " damage");
-                    Game.CurrentPlayer.Health -= damage;
-                    health -= attack;
+                    case "a":
+                        WriteLine("You attack " + monsterName + " with a good punch");
+                        monsterDamage = monsterPower - Game.CurrentPlayer.ArmorValue;
+                        if (monsterDamage < 0)
+                            monsterDamage = 0;
+                        monaterAttack = Game.rnd.Next(0, Game.CurrentPlayer.WeaponValue) + Game.rnd.Next(1, 4);
+                        WriteLine("You lose " + monsterDamage + " health and deal " + monaterAttack + " damage");
+                        Game.CurrentPlayer.Health -= monsterDamage;
+                        monsterHealth -= monaterAttack;
+                        break;
+                    case "d":
+                        WriteLine("You defend yourself against " + monsterName + " and parry his attack");
+                        monsterDamage = (monsterPower / 4) - Game.CurrentPlayer.ArmorValue;
+                        if (monsterDamage < 0)
+                            monsterDamage = 0;
+                        monaterAttack = Game.rnd.Next(0, Game.CurrentPlayer.WeaponValue) / 2;
+                        WriteLine("You lose " + monsterDamage + " health and deal " + monaterAttack + " damage");
+                        Game.CurrentPlayer.Health -= monsterDamage;
+                        monsterHealth -= monaterAttack;
+                        break;
+                    case "r":
+                        if (Game.rnd.Next(0, 2) == 0)
+                        {
+                            WriteLine("You try to run away but you can't shake off the attacker");
+                            monsterDamage = monsterPower - Game.CurrentPlayer.ArmorValue;
+                            if (monsterDamage < 0)
+                                monsterDamage = 0;
+                            WriteLine("You lose " + monsterDamage + " health, unable to escape");
+                            Game.CurrentPlayer.Health -= monsterDamage;
+                        }
+                        else
+                        {
+                            WriteLine("You run away and after a short time have shaken off your pursuer");
+
+                        }
+                        break;
+                    case "h":
+                        if (Game.CurrentPlayer.Potions == 0)
+                        {
+                            WriteLine("Heal failed because u have no potions left!");
+                            monsterDamage = monsterPower - Game.CurrentPlayer.ArmorValue;
+                            if (monsterDamage < 0)
+                                monsterDamage = 0;
+                            WriteLine(monsterDamage + " dmg from " + monsterName);
+                            Game.CurrentPlayer.Health -= monsterDamage;
+                        }
+                        else
+                        {
+                            WriteLine("Heal success");
+                            potionValue = 5;
+                            WriteLine("You gain " + potionValue + " health");
+                            Game.CurrentPlayer.Health += potionValue;
+                            Game.CurrentPlayer.Potions--;
+                            monsterDamage = (monsterPower / 4) - Game.CurrentPlayer.ArmorValue;
+                            if (monsterDamage < 0)
+                                monsterDamage = 0;
+                            WriteLine(monsterDamage + " dmg from " + monsterName);
+                            Game.CurrentPlayer.Health -= monsterDamage;
+                        }
+                        break;
+                    case "s":
+                        if (Game.rnd.Next(0, 2) == 0)
+                        {
+                            WriteLine("You try to escape to a nearby shop, but do not escape your pursuer");
+                            monsterDamage = monsterPower - Game.CurrentPlayer.ArmorValue;
+                            if (monsterDamage < 0)
+                                monsterDamage = 0;
+                            WriteLine("You lose " + monsterDamage + " health, unable to escape");
+                            Game.CurrentPlayer.Health -= monsterDamage;
+                        }
+                        else
+                        {
+                            WriteLine("You do a few hooks and get away from your pursuer");
+                            Shop.RunShop();
+                        }
+                        break;
+                    case "q":
+                        Game.Quit();
+                        break;
+
+                    default:
+                        break;
                 }
 
-                //defend
-                else if (input.ToLower() == "d" || input.ToLower() == "defend")
-                {
-                    WriteLine("You defend yourself against " + name + " and parry his attack");
-                    int damage = (power / 4) - Game.CurrentPlayer.ArmorValue;
-                    if (damage < 0)
-                        damage = 0;
-                    int attack = Game.rnd.Next(0, Game.CurrentPlayer.WeaponValue) / 2;
-                    WriteLine("You lose " + damage + " health and deal " + attack + " damage");
-                    Game.CurrentPlayer.Health -= damage;
-                    health -= attack;
-                }
-
-                //run
-                else if (input.ToLower() == "r" || input.ToLower() == "run")
-                {
-                    if (Game.rnd.Next(0, 2) == 0)
-                    {
-                        WriteLine("You try to run away but you can't shake off the attacker");
-                        int damage = power - Game.CurrentPlayer.ArmorValue;
-                        if (damage < 0)
-                            damage = 0;
-                        WriteLine("You lose " + damage + " health, unable to escape");
-                        Game.CurrentPlayer.Health -= damage;
-                    }
-                    else
-                    {
-                        WriteLine("You run away and after a short time have shaken off your pursuer");
-
-                    }
-                }
-
-                //heal
-                else if (input.ToLower() == "h" || input.ToLower() == "heal")
-                {
-                    if (Game.CurrentPlayer.Potions == 0)
-                    {
-                        WriteLine("Heal failed because u have no potions left!");
-                        int damage = power - Game.CurrentPlayer.ArmorValue;
-                        if (damage < 0)
-                            damage = 0;
-                        WriteLine(damage + " dmg from " + name);
-                        Game.CurrentPlayer.Health -= damage;
-                    }
-                    else
-                    {
-                        WriteLine("Heal success");
-                        int potionV = 5;
-                        WriteLine("You gain " + potionV + " health");
-                        Game.CurrentPlayer.Health += potionV;
-                        Game.CurrentPlayer.Potions--;
-                        int damage = (power / 4) - Game.CurrentPlayer.ArmorValue;
-                        if (damage < 0)
-                            damage = 0;
-                        WriteLine(damage + " dmg from " + name);
-                        Game.CurrentPlayer.Health -= damage;
-                    }
-                }
-
-                //shop
-                else if (input.ToLower() == "s" || input.ToLower() == "shop")
-                {
-
-                    if (Game.rnd.Next(0, 2) == 0)
-                    {
-                        WriteLine("You try to escape to a nearby shop, but do not escape your pursuer");
-                        int damage = power - Game.CurrentPlayer.ArmorValue;
-                        if (damage < 0)
-                            damage = 0;
-                        WriteLine("You lose " + damage + " health, unable to escape");
-                        Game.CurrentPlayer.Health -= damage;
-                    }
-                    else
-                    {
-                        WriteLine("You do a few hooks and get away from your pursuer");
-                        Shop.RunShop();
-                    }
-                }
-
-                //quit
-                else if (input.ToLower() == "q" || input.ToLower() == "quit")
-                {
-                    Game.Quit();
-                }
-
-
+               
                 //check for loot
-                if (Game.CurrentPlayer.Health > 0 && health <= 0)
+                if (Game.CurrentPlayer.Health > 0 && monsterHealth <= 0)
                 {
                     int c = monster.SetCoinsValue();
-                    WriteLine("You have defeated " + name + "! Glory will be yours forever. You will also find " + c + " coins ");
+                    WriteLine("You have defeated " + monsterName + "! Glory will be yours forever. You will also find " + c + " coins ");
                     Game.CurrentPlayer.Coins += c;
                 }
 
@@ -210,22 +201,6 @@ namespace TextAdventure
                 }
             }
             ReadKey();
-        }
-
-        private static string GetName()
-        {
-            switch (Game.rnd.Next(0, 4))
-            {
-                case 0:
-                    return "Skeleton";
-                case 1:
-                    return "Zombie";
-                case 2:
-                    return "Human Cultist";
-                case 3:
-                    return "Grave Robber";
-            }
-            return "Human Rouge";
         }
     }
 }

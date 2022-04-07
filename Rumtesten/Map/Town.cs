@@ -8,10 +8,9 @@ namespace TextAdventure
 {
     class Town
     {
-        public int X { get; set; } = 4;
-        public int Y { get; set; } = 9;
+        public int X { get; set; }
+        public int Y { get; set; }
         public string Sym { get; set; } = "T";
-
 
         public Town(int x, int y)
         {

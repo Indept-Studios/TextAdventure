@@ -25,9 +25,24 @@ namespace TextAdventure
 
         public Monster()
         {
-            
+            Name = GetName();
         }
 
+        private string GetName()
+        {
+            switch (Game.rnd.Next(0, 4))
+            {
+                case 0:
+                    return "Skeleton";
+                case 1:
+                    return "Zombie";
+                case 2:
+                    return "Human Cultist";
+                case 3:
+                    return "Grave Robber";
+            }
+            return "Human Rouge";
+        }
 
         /// <summary>
         /// Set a random potion value
