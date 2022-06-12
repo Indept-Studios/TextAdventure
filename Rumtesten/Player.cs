@@ -9,8 +9,6 @@ namespace TextAdventure
     [Serializable]
     class Player : Creature
     {
-        private static Player instance = null;
-
         public override int X { get; set; } = 5;
         public override int Y { get; set; } = 5;
         public override string Name { get; set; }
@@ -25,18 +23,6 @@ namespace TextAdventure
         public override int XP { get; set; }
         public override int Potions { get; set; } = 0;
         public override int Difficulty { get; set; }
-
-        public static Player Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new Player();
-                }
-                return instance;
-            }
-        }
 
         public void Move(Map map)
         {

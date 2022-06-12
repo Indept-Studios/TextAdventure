@@ -62,6 +62,7 @@ namespace TextAdventure
         {
             Console.Clear();
             Player player = new Player();
+
             
             Console.WriteLine("Please enter your name");
             player.Name = Console.ReadLine();
